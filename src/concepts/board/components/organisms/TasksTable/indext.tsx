@@ -1,5 +1,5 @@
 import React from "react";
-import { TaskType } from "./types";
+import { StatusType, TaskType } from "./types";
 import Image from "next/image";
 
 const MOCK_DATA: TaskType[] = [
@@ -36,6 +36,12 @@ const MOCK_DATA: TaskType[] = [
 ];
 
 export const TasksTable: React.FC = () => {
+  const style: { [key: string]: any } = {
+    default: "bg-blue-500 rounded-lg flex flex-col p-3",
+    progress: "bg-yellow-500 rounded-lg flex flex-col p-3",
+    "wont-do": "bg-red-500 rounded-lg flex flex-col p-3",
+    completed: "bg-green-500 rounded-lg flex flex-col p-3",
+  };
   return (
     <div>
       <div className="flex flex-col gap-3">
@@ -43,7 +49,7 @@ export const TasksTable: React.FC = () => {
           return (
             <div
               key={task.id}
-              className="bg-blue-500 rounded-lg flex flex-col p-3"
+              className={style[task.status || style.default] || style.default}
             >
               <header className="flex gap-3 items-center">
                 {/* TODO: Componentizar o ícone */}

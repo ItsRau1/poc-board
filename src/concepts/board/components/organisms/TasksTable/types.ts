@@ -8,4 +8,4 @@ export type TaskType = {
 
 type IconType = "man-technologist" | "speech-balloon" | "hot-beverage" | "man-lifting-weights" | "books" | "alarm-clock";
 
-type StatusType = "progress" | "completed" | "wont-do"
+export type StatusType = "progress" | "completed" | "wont-do"
