@@ -1,6 +1,7 @@
 import React from "react";
 import { StatusType, TaskType } from "./types";
 import Image from "next/image";
+import { TaskStatus } from "../../atoms/TaskStatus";
 
 const MOCK_DATA: TaskType[] = [
   {
@@ -36,11 +37,11 @@ const MOCK_DATA: TaskType[] = [
 ];
 
 export const TasksTable: React.FC = () => {
-  const style: { [key: string]: any } = {
-    default: "bg-blue-500 rounded-lg flex flex-col p-3",
-    progress: "bg-yellow-500 rounded-lg flex flex-col p-3",
-    "wont-do": "bg-red-500 rounded-lg flex flex-col p-3",
-    completed: "bg-green-500 rounded-lg flex flex-col p-3",
+  const backgroundColor: { [key: string]: string } = {
+    default: "bg-tasks-bg-default",
+    progress: "bg-tasks-bg-progress",
+    "wont-do": "bg-tasks-bg-wont-do",
+    completed: "bg-tasks-bg-completed",
   };
   return (
     <div>
@@ -49,7 +50,10 @@ export const TasksTable: React.FC = () => {
           return (
             <div
               key={task.id}
-              className={style[task.status || style.default] || style.default}
+              className={`rounded-lg flex flex-col p-3 ${
+                backgroundColor[task.status || backgroundColor.default] ||
+                backgroundColor.default
+              }`}
             >
               <header className="flex gap-3 items-center">
                 {/* TODO: Componentizar o ícone */}
@@ -62,7 +66,7 @@ export const TasksTable: React.FC = () => {
                   />
                 </div>
                 {task.name}
-                {task.status}
+                <TaskStatus status={task.status} />
               </header>
               {task.description}
             </div>
