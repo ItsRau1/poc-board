@@ -20,19 +20,12 @@ const config: Config = {
           "icon-wont-do": "#de514b",
           "bg-default": "#E2E8EE",
           "bg-add": "#F5E8D4"
+        },
+        color: {
+          "soft": "#767D87",
         }
       }
     },
-    fontSize: {
-      xsm: '0.625rem', // TODO - não ta exportando
-      sm: '0.8rem',
-      base: '1rem',
-      xl: '1.25rem',
-      '2xl': '1.563rem',
-      '3xl': '1.953rem',
-      '4xl': '2.441rem',
-      '5xl': '3.052rem',
-    }
   },
   plugins: [],
 };
