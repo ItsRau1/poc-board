@@ -15,8 +15,10 @@
   }
 } */
 
+html,
 body {
   background: var(--bg-color);
   color: var(--font-color);
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
 }
