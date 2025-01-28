@@ -6,6 +6,6 @@ export type TaskType = {
   status?: StatusType;
 } 
 
-type IconType = "man-technologist" | "speech-balloon" | "hot-beverage" | "man-lifting-weights" | "books" | "alarm-clock";
+export type IconType = "man-technologist" | "speech-balloon" | "hot-beverage" | "man-lifting-weights" | "books" | "alarm-clock";
 
 export type StatusType = "progress" | "completed" | "wont-do"
