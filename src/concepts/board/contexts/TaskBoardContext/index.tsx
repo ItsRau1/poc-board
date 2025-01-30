@@ -1,10 +1,17 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState
+} from "react";
 import {
   IconType,
   StatusType,
   TaskType
 } from "../../components/organisms/TasksTable/types";
 import { TaskBoardContextType } from "./types";
+import { MOCK_DATA } from "./constantes";
 
 const TaskBoardContext = createContext({} as TaskBoardContextType);
 
@@ -26,6 +33,11 @@ export const TaskBoardContextProvider: React.FC<{ children: ReactNode }> = ({
   const updateTask = () => {};
 
   const deleteTask = () => {};
+
+  // TODO: Remover após integração com API
+  useEffect(() => {
+    setTaskList(MOCK_DATA);
+  }, []);
 
   return (
     <TaskBoardContext.Provider

@@ -2,9 +2,12 @@ import { Title } from "@/ui/components/atoms/Title";
 import { TaskIcon } from "../../atoms/TaskIcon";
 import { TaskType } from "../../organisms/TasksTable/types";
 import { TaskStatus } from "../../atoms/TaskStatus";
+import { useTaskBoardContext } from "@/concepts/board/contexts/TaskBoardContext";
+import { Dispatch, SetStateAction, useMemo } from "react";
 
 export type TaskCardProps = {
   task: TaskType;
+  setOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 const backgroundColor: { [key: string]: string } = {
@@ -14,13 +17,24 @@ const backgroundColor: { [key: string]: string } = {
   completed: "bg-tasks-bg-completed"
 };
 
-export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
+export const TaskCard: React.FC<TaskCardProps> = ({ task, setOpen }) => {
+  const { setSelectedTask, selectedTask } = useTaskBoardContext();
+  const TaskCardContainerStyles = useMemo(() => {
+    const isSelectedTask = (task: TaskType) => {
+      return task.id === selectedTask?.id;
+    };
+    return `rounded-lg flex flex-col p-3 min-w-[25rem] min-h-fit ${
+      backgroundColor[task.status || "default"]
+    } ${isSelectedTask(task) && "outline outline-offset-[3px] outline-black"}`;
+  }, [selectedTask, task]); // TODO: Melhorar essa lógica
+
+  const selectTask = (task: TaskType) => {
+    setSelectedTask(task);
+    setOpen(true);
+  };
+
   return (
-    <div
-      className={`rounded-lg flex flex-col p-3 min-w-[25rem] min-h-fit ${
-        backgroundColor[task.status || "default"]
-      }`}
-    >
+    <div className={TaskCardContainerStyles} onClick={() => selectTask(task)}>
       <header className="flex gap-3 items-center justify-between w-full">
         <div className="flex items-center gap-3">
           <TaskIcon icon={task.icon} />

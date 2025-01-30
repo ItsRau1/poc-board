@@ -1,12 +1,13 @@
-import type { Config } from "tailwindcss";
+import { Config } from "tailwindcss";
 
-const config: Config = {
+export default {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/concepts/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/ui/templates/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./concepts/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    "./ui/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -22,11 +23,10 @@ const config: Config = {
           "bg-add": "#F5E8D4"
         },
         color: {
-          "soft": "#767D87",
+          soft: "#767D87"
         }
       }
-    },
+    }
   },
   plugins: [],
-};
-export default config;
+} satisfies Config;
