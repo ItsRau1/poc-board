@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { TaskCard } from "../../molecules/TaskCard";
 import { useTaskBoardContext } from "@/concepts/board/contexts/TaskBoardContext";
 import { Modal } from "@/ui/components/molecules/Modal";
+import { ModalMain } from "../../molecules/ModalMain";
 
 export const TasksTable: React.FC = () => {
   const { taskList, setSelectedTask } = useTaskBoardContext();
@@ -23,7 +24,7 @@ export const TasksTable: React.FC = () => {
         setOpen={setOpen}
         closeAction={() => setSelectedTask(undefined)}
         title="Task Details"
-        main={<div>Main</div>}
+        main={<ModalMain />}
         footer={<div>Footer</div>}
       />
     </div>
