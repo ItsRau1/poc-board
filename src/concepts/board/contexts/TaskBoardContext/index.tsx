@@ -6,8 +6,8 @@ import {
   useState
 } from "react";
 import {
-  IconType,
-  StatusType,
+  IconEnum,
+  StatusEnum,
   TaskType
 } from "../../components/organisms/TasksTable/types";
 import { TaskBoardContextType } from "./types";
@@ -21,12 +21,31 @@ export const TaskBoardContextProvider: React.FC<{ children: ReactNode }> = ({
   children
 }) => {
   const [taskList, setTaskList] = useState<TaskType[] | undefined>();
-  const [selectedTask, setSelectedTask] = useState<TaskType | undefined>();
-
+  const [taskId, setTaskId] = useState<string | undefined>();
   const [taskName, setTaskName] = useState<string>("nAME");
   const [taskDescription, setTaskDescription] = useState<string>("");
-  const [taskIcon, setTaskIcon] = useState<IconType | undefined>();
-  const [taskStatus, setTaskStatus] = useState<StatusType | undefined>();
+  const [taskIcon, setTaskIcon] = useState<IconEnum | undefined>(
+    "man-technologist"
+  );
+  const [taskStatus, setTaskStatus] = useState<StatusEnum | undefined>(
+    "completed"
+  );
+
+  const fillTask = (task: TaskType) => {
+    setTaskId(task.id);
+    setTaskName(task.name);
+    setTaskDescription(task.description || "");
+    setTaskIcon(task.icon);
+    setTaskStatus(task.status);
+  };
+
+  const clearTask = () => {
+    setTaskId(undefined);
+    setTaskName("");
+    setTaskDescription("");
+    setTaskIcon(undefined);
+    setTaskStatus(undefined);
+  };
 
   const createTask = () => {};
 
@@ -43,8 +62,8 @@ export const TaskBoardContextProvider: React.FC<{ children: ReactNode }> = ({
     <TaskBoardContext.Provider
       value={{
         taskList,
-        selectedTask,
-        setSelectedTask,
+        taskId,
+        setTaskId,
         taskName,
         setTaskName,
         taskDescription,
@@ -53,6 +72,8 @@ export const TaskBoardContextProvider: React.FC<{ children: ReactNode }> = ({
         setTaskIcon,
         taskStatus,
         setTaskStatus,
+        fillTask,
+        clearTask,
         createTask,
         updateTask,
         deleteTask

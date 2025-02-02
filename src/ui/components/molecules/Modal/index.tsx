@@ -1,16 +1,7 @@
-import { ReactNode } from "react";
 import { Overlay } from "../../atoms/Overlay";
 import { Button } from "../../atoms/Button";
 import Image from "next/image";
-
-export type ModalProps = {
-  open: boolean;
-  setOpen: (value: boolean) => void;
-  closeAction: () => void;
-  title: string;
-  main: ReactNode;
-  footer: ReactNode;
-};
+import { ModalProps } from "./types";
 
 export const Modal: React.FC<ModalProps> = ({
   open,

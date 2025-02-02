@@ -5,7 +5,7 @@ import { Modal } from "@/ui/components/molecules/Modal";
 import { ModalMain } from "../../molecules/ModalMain";
 
 export const TasksTable: React.FC = () => {
-  const { taskList, setSelectedTask } = useTaskBoardContext();
+  const { taskList, clearTask } = useTaskBoardContext();
   const [open, setOpen] = useState(false);
   return (
     <div>
@@ -22,7 +22,7 @@ export const TasksTable: React.FC = () => {
       <Modal
         open={open}
         setOpen={setOpen}
-        closeAction={() => setSelectedTask(undefined)}
+        closeAction={() => clearTask()}
         title="Task Details"
         main={<ModalMain />}
         footer={<div>Footer</div>}

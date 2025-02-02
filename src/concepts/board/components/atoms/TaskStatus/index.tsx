@@ -6,16 +6,16 @@ export const TaskStatus: React.FC<Props> = ({ status }) => {
   const statusIcons: { [key: string]: any } = {
     progress: {
       src: "progress.svg",
-      backgroundColor: "bg-tasks-icon-progress",
+      backgroundColor: "bg-tasks-icon-progress"
     },
     "wont-do": {
       src: "close-ring.svg",
-      backgroundColor: "bg-tasks-icon-wont-do",
+      backgroundColor: "bg-tasks-icon-wont-do"
     },
     completed: {
       src: "done-ring.svg",
-      backgroundColor: "bg-tasks-icon-completed",
-    },
+      backgroundColor: "bg-tasks-icon-completed"
+    }
   };
 
   if (!status) return null;

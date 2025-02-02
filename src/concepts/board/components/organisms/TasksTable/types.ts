@@ -1,11 +1,11 @@
 export type TaskType = {
-  id: string;
+  id?: string;
   name: string;
   description?: string;
-  icon: IconType;
-  status?: StatusType;
+  icon: IconEnum;
+  status?: StatusEnum;
 } 
 
-export type IconType = "man-technologist" | "speech-balloon" | "hot-beverage" | "man-lifting-weights" | "books" | "alarm-clock";
+export type IconEnum = "man-technologist" | "speech-balloon" | "hot-beverage" | "man-lifting-weights" | "books" | "alarm-clock";
 
-export type StatusType = "progress" | "completed" | "wont-do"
+export type StatusEnum = "progress" | "completed" | "wont-do"

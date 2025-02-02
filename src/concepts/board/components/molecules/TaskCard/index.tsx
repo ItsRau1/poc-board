@@ -3,12 +3,8 @@ import { TaskIcon } from "../../atoms/TaskIcon";
 import { TaskType } from "../../organisms/TasksTable/types";
 import { TaskStatus } from "../../atoms/TaskStatus";
 import { useTaskBoardContext } from "@/concepts/board/contexts/TaskBoardContext";
-import { Dispatch, SetStateAction, useMemo } from "react";
-
-export type TaskCardProps = {
-  task: TaskType;
-  setOpen: Dispatch<SetStateAction<boolean>>;
-};
+import { useMemo } from "react";
+import { TaskCardProps } from "./types";
 
 const backgroundColor: { [key: string]: string } = {
   default: "bg-tasks-bg-default",
@@ -18,18 +14,21 @@ const backgroundColor: { [key: string]: string } = {
 };
 
 export const TaskCard: React.FC<TaskCardProps> = ({ task, setOpen }) => {
-  const { setSelectedTask, selectedTask } = useTaskBoardContext();
+  const { fillTask, taskId } = useTaskBoardContext();
+  const isSelectedTask = useMemo(() => {
+    return task.id === taskId;
+  }, [task, taskId]);
   const TaskCardContainerStyles = useMemo(() => {
-    const isSelectedTask = (task: TaskType) => {
-      return task.id === selectedTask?.id;
-    };
     return `rounded-lg flex flex-col p-3 min-w-[25rem] min-h-fit ${
       backgroundColor[task.status || "default"]
-    } ${isSelectedTask(task) && "outline outline-offset-[3px] outline-black"}`;
-  }, [selectedTask, task]); // TODO: Melhorar essa lógica
+    } ${
+      isSelectedTask &&
+      "outline outline-[2px] outline-offset-[3px] outline-[#4E80EE]"
+    }`;
+  }, [task, isSelectedTask]);
 
   const selectTask = (task: TaskType) => {
-    setSelectedTask(task);
+    fillTask(task);
     setOpen(true);
   };
 

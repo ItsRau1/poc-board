@@ -1,18 +1,20 @@
 import { Dispatch, SetStateAction } from "react";
-import { IconType, StatusType, TaskType } from "../../components/organisms/TasksTable/types";
+import { IconEnum, StatusEnum, TaskType } from "../../components/organisms/TasksTable/types";
 
 export type TaskBoardContextType = {
   taskList?: TaskType[];
-  selectedTask?: TaskType;
-  setSelectedTask: Dispatch<SetStateAction<undefined | TaskType>>;
+  taskId?: string;
+  setTaskId: Dispatch<SetStateAction<string | undefined>>;
   taskName: string;
   setTaskName: Dispatch<SetStateAction<string>>;
   taskDescription: string;
   setTaskDescription: Dispatch<SetStateAction<string>>;
-  taskIcon?: IconType;
-  setTaskIcon: Dispatch<SetStateAction<IconType | undefined>>;
-  taskStatus?: StatusType;
-  setTaskStatus: Dispatch<SetStateAction<StatusType | undefined>>;
+  taskIcon?: IconEnum;
+  setTaskIcon: Dispatch<SetStateAction<IconEnum | undefined>>;
+  taskStatus?: StatusEnum;
+  setTaskStatus: Dispatch<SetStateAction<StatusEnum | undefined>>;
+  fillTask: (task: TaskType) => void;
+  clearTask: () => void;
   createTask: () => void;
   updateTask: () => void;
   deleteTask: () => void;

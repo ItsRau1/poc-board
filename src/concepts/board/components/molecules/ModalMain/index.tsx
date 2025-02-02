@@ -1,11 +1,27 @@
 import { useTaskBoardContext } from "@/concepts/board/contexts/TaskBoardContext";
 import { Input } from "@/ui/components/atoms/Input";
+import { RadioGroup } from "@/ui/components/molecules/RadioGroup";
+import { IconEnum, StatusEnum } from "../../organisms/TasksTable/types";
+import {
+  radioItemsIcon,
+  radioItemsStatus
+} from "@/concepts/board/contexts/TaskBoardContext/constantes";
+import { RadioItemType } from "@/ui/components/atoms/RadioItem/types";
 
 export const ModalMain = () => {
-  const { taskName, setTaskName, taskDescription, setTaskDescription } =
-    useTaskBoardContext();
+  const {
+    taskName,
+    setTaskName,
+    taskDescription,
+    setTaskDescription,
+    taskIcon,
+    setTaskIcon,
+    taskStatus,
+    setTaskStatus
+  } = useTaskBoardContext();
+
   return (
-    <div className="h-full flex flex-col gap-2">
+    <main className="h-full flex flex-col gap-3">
       <Input
         label="Task name"
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -24,41 +40,22 @@ export const ModalMain = () => {
         value={taskDescription}
         type="textarea"
       />
-      <input type="radio" name="foo" id="foo1" />
-      <label htmlFor="foo1">foo1</label>
-      <input type="radio" name="foo" id="foo2" />
-      <label htmlFor="foo2">foo2</label>
-      <label
-        htmlFor="foo3"
-        className="has-[:checked]:text-[#4E80EE] outline outline-transparent has-[:checked]:outline-[#4E80EE] group"
-      >
-        foo3
-        <input type="radio" name="foo" id="foo3" className="hidden" />
-        <div className="w-4 h-4 rounded-full bg-transparent group-has-[:checked]:bg-[#4E80EE]"></div>
-      </label>
-    </div>
+      <RadioGroup
+        items={radioItemsIcon}
+        name="task-icon"
+        onChange={(e) => setTaskIcon(e.target.id as IconEnum)}
+        value={taskIcon?.toString() || ""}
+        type={RadioItemType.icon}
+        label="Icon"
+      />
+      <RadioGroup
+        items={radioItemsStatus}
+        name="task-status"
+        onChange={(e) => setTaskStatus(e.target.id as StatusEnum)}
+        value={taskStatus?.toString() || ""}
+        type={RadioItemType.detail}
+        label="Status"
+      />
+    </main>
   );
 };
-
-function makeRadioboxGroupUnCheckable(groupSelector) {
-  let currentId;
-
-  document.querySelectorAll(groupSelector).forEach((elem) => {
-    elem.addEventListener("click", allowUncheck);
-    // only needed if can be pre-checked
-    if (elem.checked) {
-      currentId = elem.id;
-    }
-  });
-
-  function allowUncheck(e) {
-    if (this.id === currentId) {
-      this.checked = false;
-      currentId = undefined;
-    } else {
-      currentId = this.id;
-    }
-  }
-}
-
-makeRadioboxGroupUnCheckable("input[type=radio][name=foo]");

@@ -1,8 +1,4 @@
-export type TextareaProps = {
-  placeholder: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-};
+import { TextareaProps } from "./types";
 
 export const Textarea: React.FC<TextareaProps> = ({
   placeholder,

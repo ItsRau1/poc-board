@@ -1,14 +1,7 @@
 import { InputText } from "../InputText";
 import { Label } from "../Label";
 import { Textarea } from "../Textarea";
-
-export type InputProps = {
-  label: string;
-  placeholder: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  type: "text" | "textarea";
-};
+import { InputProps } from "./types";
 
 const Inputs: { [key: string]: any } = {
   text: InputText,

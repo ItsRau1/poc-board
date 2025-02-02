@@ -1,5 +1,5 @@
-import { StatusType } from "../../organisms/TasksTable/types";
+import { StatusEnum } from "../../organisms/TasksTable/types";
 
 export type Props = {
-  status?: StatusType;
+  status?: StatusEnum;
 }
