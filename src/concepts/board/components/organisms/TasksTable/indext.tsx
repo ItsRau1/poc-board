@@ -3,6 +3,7 @@ import { TaskCard } from "../../molecules/TaskCard";
 import { useTaskBoardContext } from "@/concepts/board/contexts/TaskBoardContext";
 import { Modal } from "@/ui/components/molecules/Modal";
 import { ModalMain } from "../../molecules/ModalMain";
+import { ModalFooter } from "../../molecules/ModalFooter";
 
 export const TasksTable: React.FC = () => {
   const { taskList, clearTask } = useTaskBoardContext();
@@ -25,7 +26,7 @@ export const TasksTable: React.FC = () => {
         closeAction={() => clearTask()}
         title="Task Details"
         main={<ModalMain />}
-        footer={<div>Footer</div>}
+        footer={<ModalFooter />}
       />
     </div>
   );

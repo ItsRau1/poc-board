@@ -19,7 +19,7 @@ export const Modal: React.FC<ModalProps> = ({
   return (
     <>
       <Overlay closeAction={handleClose} />
-      <div className="absolute top-6 right-6 h-[93vh] w-1/2 bg-white flex flex-col px-6 py-3 z-50 rounded-lg gap-2">
+      <div className="animate-modal absolute top-6 right-6 h-[93vh] w-1/2 bg-white flex flex-col px-6 py-5 z-50 rounded-lg gap-2">
         <div className="flex items-center justify-between w-full">
           <p>{title}</p>
           <Button type="close" onClick={handleClose}>
